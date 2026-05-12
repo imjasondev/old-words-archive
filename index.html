@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Words Archive &mdash; Historical Language Guides</title>
+<meta name="description" content="A simple archive of language guides covering ancient languages, old scripts, and historical English styles.">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --text: #000;
+    --muted: #555;
+    --border: #ddd;
+    --bg: #fff;
+    --accent: #000;
+    --max: 660px;
+  }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: var(--text); text-decoration: none; }
+  header {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2rem 1.25rem 1.5rem;
+  }
+  .site-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .site-name:hover { text-decoration: underline; }
+  nav { display: flex; gap: 1.25rem; }
+  nav a {
+    font-size: 15px;
+    color: var(--text);
+  }
+  nav a:hover { text-decoration: underline; }
+  .divider {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+  .intro {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 1.25rem 1.25rem 1rem;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .filter-bar {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0.25rem 1.25rem 1.25rem;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .pill {
+    font-size: 13px;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--muted);
+    background: none;
+    cursor: pointer;
+    font-family: system-ui, sans-serif;
+  }
+  .pill:hover { border-color: #999; color: var(--text); }
+  .pill.active { background: var(--text); color: #fff; border-color: var(--text); }
+  .articles { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
+  .card { display: block; padding: 0.9rem 0; border-top: 1px solid var(--border); cursor: pointer; }
+  .card:last-child { border-bottom: 1px solid var(--border); }
+  .card-top { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
+  .card-tag { font-size: 12px; color: var(--muted); }
+  .card-dot { width: 3px; height: 3px; border-radius: 50%; background: #ccc; flex-shrink: 0; }
+  .card-date { font-size: 12px; color: var(--muted); }
+  .card h2 { font-size: 1rem; font-weight: 700; line-height: 1.4; color: var(--text); margin-bottom: 0.2rem; }
+  .card:hover h2 { text-decoration: underline; }
+  .card p { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 0.35rem; }
+  .card-footer { display: flex; gap: 0.5rem; font-size: 12px; color: #999; }
+  .article-page { display: none; max-width: var(--max); margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+  .article-page.visible { display: block; }
+  .home-content.hidden { display: none; }
+  .back-btn {
+    display: inline-block;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: system-ui, sans-serif;
+    padding: 0;
+    text-decoration: underline;
+  }
+  .article-page .tag { font-size: 13px; color: var(--muted); display: block; margin-bottom: 0.35rem; }
+  .article-page h1 { font-size: 1.55rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.5rem; }
+  .article-meta {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .article-body { font-size: 1rem; color: var(--text); }
+  .article-body p { margin-bottom: 1.1rem; line-height: 1.75; }
+  .article-body h2 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+  .article-body h3 { font-size: 0.98rem; font-weight: 700; margin: 1.15rem 0 0.45rem; }
+  .article-body ul { padding-left: 1.3rem; margin-bottom: 1.1rem; color: var(--muted); }
+  .article-body ul li { margin-bottom: 0.2rem; font-size: 15px; }
+  .article-body em { color: var(--muted); }
+  .article-body blockquote {
+    border-left: 2px solid var(--border);
+    margin: 1.25rem 0;
+    padding: 0.1rem 1rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .article-body .note {
+    border-left: 2px solid var(--border);
+    margin: 1.25rem 0;
+    padding: 0.4rem 1rem;
+    color: var(--muted);
+  }
+  .article-body a { text-decoration: underline; }
+  footer {
+    max-width: var(--max);
+    margin: 1.5rem auto 0;
+    padding: 1rem 1.25rem 2rem;
+    font-size: 13px;
+    color: #999;
+  }
+  footer a { color: #999; text-decoration: underline; }
+</style>
+</head>
+<body>
+<header>
+  <a class="site-name" href="#" onclick="goHome()">Old Words Archive</a>
+  <nav>
+    <a href="#" onclick="goHome()">Home</a>
+    <a href="#" onclick="showArchive()">Archive</a>
+  </nav>
+</header>
+<hr class="divider">
+<div class="home-content" id="homeContent">
+  <div class="intro">
+    <p>A simple archive of language guides covering ancient languages, old scripts, and historical English styles.</p>
+  </div>
+  <div class="filter-bar">
+    <button class="pill active" onclick="filterCards(this, 'all')">All</button>
+    <button class="pill" data-filter="ancient" onclick="filterCards(this, 'ancient')">Ancient World</button>
+    <button class="pill" onclick="filterCards(this, 'scripts')">Scripts</button>
+    <button class="pill" onclick="filterCards(this, 'english')">English Styles</button>
+    <button class="pill" onclick="filterCards(this, 'living')">Living Traditions</button>
+  </div>
+  <div class="articles" id="cardList">
+    <a class="card" data-cat="ancient" onclick="openArticle('old-norse','guides/old-norse.html','Ancient World','May 12, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">May 12, 2026</span></div>
+      <h2>What Is Old Norse? History, Words, and Modern Uses</h2>
+      <p>Viking-age language, saga vocabulary, and the difference between historical context and costume phrasing.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('ancient-greek','guides/ancient-greek.html','Ancient World','May 11, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">May 11, 2026</span></div>
+      <h2>Ancient Greek Language Guide: Alphabet, Meaning, and Examples</h2>
+      <p>Alphabet, vocabulary, and why classical Greek still matters in philosophy, science, and symbolism.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('latin','guides/latin.html','Ancient World','May 10, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">May 10, 2026</span></div>
+      <h2>Latin Explained: History, Common Phrases, and Modern Relevance</h2>
+      <p>Roman context, famous phrases, and how to use Latin without flattening it into cliche.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="english" onclick="openArticle('old-english','guides/old-english.html','English Styles','May 9, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">English Styles</span><span class="card-dot"></span><span class="card-date">May 9, 2026</span></div>
+      <h2>Old English Guide: Meaning, History, and Common Words</h2>
+      <p>The earliest form of English most readers can still half-recognize, but rarely understand cleanly.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="english" onclick="openArticle('anglo-saxon','guides/anglo-saxon.html','English Styles','May 8, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">English Styles</span><span class="card-dot"></span><span class="card-date">May 8, 2026</span></div>
+      <h2>Anglo-Saxon Language Guide: What It Means and How It Differs</h2>
+      <p>A clearer explanation of the label, the language behind it, and why context matters more than archaism.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="english" onclick="openArticle('middle-english','guides/middle-english.html','English Styles','May 7, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">English Styles</span><span class="card-dot"></span><span class="card-date">May 7, 2026</span></div>
+      <h2>Middle English Guide: Between Old English and Modern English</h2>
+      <p>The transition point where English starts becoming readable again while still feeling unmistakably old.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="english" onclick="openArticle('medieval-english','guides/medieval-english.html','English Styles','May 6, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">English Styles</span><span class="card-dot"></span><span class="card-date">May 6, 2026</span></div>
+      <h2>Medieval English Guide: Style, Period Feel, and Practical Use</h2>
+      <p>How readers usually mean "medieval English," and what actually makes the tone sound convincing.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="english" onclick="openArticle('shakespearean-english','guides/shakespearean-english.html','English Styles','May 5, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">English Styles</span><span class="card-dot"></span><span class="card-date">May 5, 2026</span></div>
+      <h2>Shakespearean English Guide: Style, Phrases, and Modern Use</h2>
+      <p>A cleaner way to think about dramatic Early Modern English without reducing it to parody.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="english" onclick="openArticle('victorian-english','guides/victorian-english.html','English Styles','May 4, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">English Styles</span><span class="card-dot"></span><span class="card-date">May 4, 2026</span></div>
+      <h2>Victorian English Guide: Tone, Manners, and Language Style</h2>
+      <p>Polished nineteenth-century voice, courtesy, and period tone explained without over-decoration.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="living" onclick="openArticle('aramaic','guides/aramaic.html','Living Traditions','May 3, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Living Traditions</span><span class="card-dot"></span><span class="card-date">May 3, 2026</span></div>
+      <h2>Aramaic Guide: Script, History, and Why It Still Matters</h2>
+      <p>Ancient, script-rich, and still culturally alive through religion, history, and textual tradition.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('sanskrit','guides/sanskrit.html','Ancient World','May 2, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">May 2, 2026</span></div>
+      <h2>Sanskrit Guide: Meaning, Script, and Modern Interest</h2>
+      <p>Script, transliteration, philosophy, and the difference between respectful use and empty borrowing.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="scripts" onclick="openArticle('rune','guides/rune.html','Scripts','May 1, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Scripts</span><span class="card-dot"></span><span class="card-date">May 1, 2026</span></div>
+      <h2>Rune Guide: Symbols, Scripts, and How to Read Them Better</h2>
+      <p>Runes explained as writing systems first, not just free-floating symbols for atmosphere.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="scripts" onclick="openArticle('ogham','guides/ogham.html','Scripts','Apr 30, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Scripts</span><span class="card-dot"></span><span class="card-date">Apr 30, 2026</span></div>
+      <h2>Ogham Guide: The Old Irish Script Explained Clearly</h2>
+      <p>An introduction to Ogham through inscription practice, structure, and modern visual fascination.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('aztec','guides/aztec.html','Ancient World','Apr 29, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">Apr 29, 2026</span></div>
+      <h2>Aztec Language Guide: Nahuatl, Meaning, and Modern Interest</h2>
+      <p>A clearer guide to the language tradition usually searched under the broad "Aztec" label.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('coptic','guides/coptic.html','Ancient World','Apr 28, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">Apr 28, 2026</span></div>
+      <h2>Coptic Guide: Script, Language History, and Modern Interest</h2>
+      <p>Late Egyptian language, script identity, and why the tradition still matters in reading communities.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('gothic-language','guides/gothic-language.html','Ancient World','Apr 27, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">Apr 27, 2026</span></div>
+      <h2>Gothic Language Guide: History, Script, and Why It Survives</h2>
+      <p>An early Germanic language guide that separates real history from the vague mood of the word "Gothic."</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('mayan','guides/mayan.html','Ancient World','Apr 26, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">Apr 26, 2026</span></div>
+      <h2>Mayan Language Guide: Writing, History, and Modern Curiosity</h2>
+      <p>A broad but careful look at Maya language and script traditions without fake mystery.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="ancient" onclick="openArticle('sumerian','guides/sumerian.html','Ancient World','Apr 25, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Ancient World</span><span class="card-dot"></span><span class="card-date">Apr 25, 2026</span></div>
+      <h2>Sumerian Guide: Cuneiform, History, and Why It Still Fascinates</h2>
+      <p>Cuneiform, early writing, and one of the deepest language traditions in the historical record.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="living" onclick="openArticle('navajo','guides/navajo.html','Living Traditions','Apr 24, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Living Traditions</span><span class="card-dot"></span><span class="card-date">Apr 24, 2026</span></div>
+      <h2>Navajo Guide: Language, Meaning, and Respectful Modern Use</h2>
+      <p>A respectful introduction to a living Indigenous language often searched through greetings and history.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+    <a class="card" data-cat="living" onclick="openArticle('karen','guides/karen.html','Living Traditions','Apr 23, 2026','By Archive Desk','6 min read')">
+      <div class="card-top"><span class="card-tag">Living Traditions</span><span class="card-dot"></span><span class="card-date">Apr 23, 2026</span></div>
+      <h2>Karen Language Guide: Context, Identity, and Practical Use</h2>
+      <p>A cleaner explanation of a broad label that readers often search without much linguistic context.</p>
+      <div class="card-footer"><span>By Archive Desk</span><span>&middot;</span><span>6 min read</span></div>
+    </a>
+  </div>
+</div>
+<div class="article-page" id="articlePage">
+  <button class="back-btn" onclick="goHome()">&larr; Back</button>
+  <span class="tag" id="art-tag"></span>
+  <h1 id="art-title"></h1>
+  <div class="article-meta">
+    <span id="art-author"></span>
+    <span id="art-date"></span>
+    <span id="art-time"></span>
+  </div>
+  <div class="article-body" id="art-body"></div>
+</div>
+<footer>
+  Old Words Archive &middot; <a href="#" onclick="goHome()">Home</a> &middot; <a href="#" onclick="showArchive()">Archive</a>
+</footer>
+<script>
+async function openArticle(id, path, tag, date, author, time) {
+  try {
+    const response = await fetch(path);
+    const html = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const title = doc.querySelector('h1')?.textContent?.trim() || 'Article';
+    const sections = [...doc.querySelectorAll('.guide-section')].map(section => section.innerHTML).join('');
+    document.getElementById('art-tag').textContent = tag;
+    document.getElementById('art-title').textContent = title;
+    document.getElementById('art-author').textContent = author;
+    document.getElementById('art-date').textContent = date;
+    document.getElementById('art-time').textContent = time;
+    document.getElementById('art-body').innerHTML = sections;
+    document.getElementById('homeContent').classList.add('hidden');
+    document.getElementById('articlePage').classList.add('visible');
+    window.scrollTo(0, 0);
+  } catch (error) {
+    console.error(error);
+  }
+}
+function goHome() {
+  document.getElementById('homeContent').classList.remove('hidden');
+  document.getElementById('articlePage').classList.remove('visible');
+  window.scrollTo(0, 0);
+}
+function filterCards(btn, cat) {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+  });
+  goHome();
+}
+function showArchive() {
+  const pill = document.querySelector('[data-filter="ancient"]');
+  filterCards(pill, 'ancient');
+}
+</script>
+</body>
+</html>
